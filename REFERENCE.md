@@ -1599,6 +1599,10 @@ saml_assertion_consumer_url_post
 
 saml.encrypt
 
+##### `saml_client_signature`
+
+saml.client.signature
+
 ##### `saml_assertion_signature`
 
 saml.assertion.signature
