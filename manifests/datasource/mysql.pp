@@ -52,6 +52,7 @@ class keycloak::datasource::mysql {
       host     => $keycloak::db_host,
       grant    => 'ALL',
       charset  => $keycloak::mysql_database_charset,
+      collate  => $keycloak::mysql_database_collate,
     }
   }
 

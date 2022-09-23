@@ -114,6 +114,8 @@
 #   MySQL Connector/J JDBC driver xa-datasource class name
 # @param mysql_database_charset
 #   MySQL database charset
+# @param mysql_database_collate
+#   MySQL database collate
 # @param proxy_https
 #   Boolean that sets if HTTPS proxy should be enabled.
 #   Set to `true` if proxying traffic through Apache.
@@ -308,6 +310,7 @@ class keycloak (
   Optional[String] $datasource_jar_filename = undef,
   Optional[String] $datasource_module_source = undef,
   String $mysql_database_charset = 'utf8',
+  String $mysql_database_collate = 'utf8_general_ci',
   Boolean $proxy_https = false,
   Boolean $truststore = false,
   Hash $truststore_hosts = {},
