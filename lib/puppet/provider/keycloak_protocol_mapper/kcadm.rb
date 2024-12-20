@@ -25,6 +25,9 @@ Puppet::Type.type(:keycloak_protocol_mapper).provide(:kcadm, parent: Puppet::Pro
     protocol_mappers = []
     realms.each do |realm|
       client_scopes_output = kcadm('get', 'client-scopes', realm)
+      t = Tempfile.new('debug_keycloak_client_scopes_' + realm)
+      t.write(client_scopes_output)
+      t.close
       client_scope_data = JSON.parse(client_scopes_output)
       client_scope_data.each do |client_scope|
         client_scope_id = client_scope['id']
@@ -77,6 +80,9 @@ Puppet::Type.type(:keycloak_protocol_mapper).provide(:kcadm, parent: Puppet::Pro
             protocol_mapper[:custom_type] = d['protocolMapper']
             # protocol_mapper[:json_config] = JSON.generate(d['config'])
             protocol_mapper[:json_config] = d['config']
+            t = Tempfile.new('debug_keycloak_protocol_mapper_' + realm + '_' + client_scope_id + '_' + d['name'])
+            t.write(JSON.generate(d['config']))
+            t.close
           end
           protocol_mappers << new(protocol_mapper)
         end
