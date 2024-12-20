@@ -211,8 +211,8 @@ Manage Keycloak client scope protocol mappers
     desc 'included.client.audience Required for `type` of `oidc-audience-mapper`'
   end
 
-  newproperty(:json_config) do
-    desc 'json configuration data for `custom` protocolMapper type'
+  newproperty(:custom_config) do
+    desc 'custom configuration data for `custom` protocolMapper type'
   end
 
   newproperty(:custom_type) do
@@ -287,8 +287,8 @@ Manage Keycloak client scope protocol mappers
     if self[:type] == "custom" && !self[:custom_type]
       raise Puppet::Error, 'custom_type is required for `custom` protocol mapper type'
     end
-    if self[:type] == "custom" && !self[:json_config]
-      raise Puppet::Error, 'json_config is required for `custom` protocol mapper type'
+    if self[:type] == "custom" && !self[:custom_config]
+      raise Puppet::Error, 'custom_config is required for `custom` protocol mapper type'
     end
   end
 end
