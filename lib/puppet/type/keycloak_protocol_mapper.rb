@@ -257,6 +257,7 @@ Manage Keycloak client scope protocol mappers
       'oidc-group-membership-mapper',
       'oidc-audience-mapper',
       'oidc-usermodel-attribute-mapper',
+      'custom',
     ]
     if self[:protocol] == 'openid-connect' && !openid_connect_types.include?(self[:type])
       raise Puppet::Error, "type #{self[:type]} is not valid for protocol openid-connect"
