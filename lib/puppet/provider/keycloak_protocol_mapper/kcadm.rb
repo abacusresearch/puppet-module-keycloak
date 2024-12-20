@@ -75,7 +75,8 @@ Puppet::Type.type(:keycloak_protocol_mapper).provide(:kcadm, parent: Puppet::Pro
           unless ['oidc-usermodel-property-mapper', 'oidc-usermodel-attribute-mapper', 'oidc-full-name-mapper', 'oidc-group-membership-mapper', 'oidc-audience-mapper', 'saml-group-membership-mapper', 'saml-user-property-mapper', 'saml-user-attribute-mapper', 'saml-role-list-mapper', 'saml-javascript-mapper'].include?(d['protocolMapper'])
             protocol_mapper[:type] = 'custom'
             protocol_mapper[:custom_type] = d['protocolMapper']
-            protocol_mapper[:json_config] = JSON.generate(d['config'])
+            # protocol_mapper[:json_config] = JSON.generate(d['config'])
+            protocol_mapper[:json_config] = d['config']
           end
           protocol_mappers << new(protocol_mapper)
         end
@@ -109,7 +110,8 @@ Puppet::Type.type(:keycloak_protocol_mapper).provide(:kcadm, parent: Puppet::Pro
     data[:config] = {}
     if resource[:type] == "custom"
       data[:protocolMapper] = resource[:custom_type]
-      data[:config] = JSON.parse(resource[:json_config])
+      # data[:config] = JSON.parse(resource[:json_config])
+      data[:config] = resource[:json_config]
     end
     if ['oidc-usermodel-property-mapper', 'saml-user-property-mapper', 'saml-user-attribute-mapper', 'oidc-usermodel-attribute-mapper'].include?(resource[:type])
       data[:config][:'user.attribute'] = resource[:user_attribute] if resource[:user_attribute]
@@ -197,7 +199,8 @@ Puppet::Type.type(:keycloak_protocol_mapper).provide(:kcadm, parent: Puppet::Pro
       config = {}
       if resource[:type] == "custom"
         data[:protocolMapper] = resource[:custom_type]
-        data[:config] = JSON.parse(resource[:json_config])
+        # data[:config] = JSON.parse(resource[:json_config])
+        data[:config] = resource[:json_config]
       end
       if ['oidc-usermodel-property-mapper', 'saml-user-property-mapper', 'saml-user-attribute-mapper', 'oidc-usermodel-attribute-mapper'].include?(resource[:type])
         config[:'user.attribute'] = resource[:user_attribute] if resource[:user_attribute]
