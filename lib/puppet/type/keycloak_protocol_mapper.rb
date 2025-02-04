@@ -198,6 +198,11 @@ Manage Keycloak client scope protocol mappers
     end
   end
 
+  newproperty(:multivalued, boolean: true) do
+    desc 'multivalued'
+    newvalues(:true, :false)
+  end
+
   newproperty(:script) do
     desc <<-EOS
     Script, only valid for `type` of `saml-javascript-mapper`'
