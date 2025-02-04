@@ -72,6 +72,7 @@ Puppet::Type.type(:keycloak_protocol_mapper).provide(:kcadm, parent: Puppet::Pro
           if ['saml-group-membership-mapper', 'saml-role-list-mapper', 'saml-javascript-mapper'].include?(protocol_mapper[:type])
             protocol_mapper[:single] = d['config']['single'].to_s.to_sym
           end
+          protocol_mapper[:multivalued] = d['config']['multivalued'].to_s.to_sym if d['config']['multivalued']
           unless ['oidc-usermodel-property-mapper', 'oidc-usermodel-attribute-mapper', 'oidc-full-name-mapper', 'oidc-group-membership-mapper', 'oidc-audience-mapper', 'saml-group-membership-mapper', 'saml-user-property-mapper', 'saml-user-attribute-mapper', 'saml-role-list-mapper', 'saml-javascript-mapper'].include?(d['protocolMapper'])
             protocol_mapper[:type] = 'custom'
             protocol_mapper[:custom_type] = d['protocolMapper']
@@ -143,6 +144,9 @@ Puppet::Type.type(:keycloak_protocol_mapper).provide(:kcadm, parent: Puppet::Pro
     end
     if ['saml-group-membership-mapper', 'saml-role-list-mapper', 'saml-javascript-mapper'].include?(resource[:type])
       data[:config][:single] = resource[:single].to_s if resource[:single]
+    end
+    if resource[:multivalued]
+      data[:config][:multivalued] = resource[:multivalued].to_s
     end
 
     t = Tempfile.new('keycloak_protocol_mapper')
@@ -231,6 +235,9 @@ Puppet::Type.type(:keycloak_protocol_mapper).provide(:kcadm, parent: Puppet::Pro
       end
       if ['saml-group-membership-mapper', 'saml-role-list-mapper', 'saml-javascript-mapper'].include?(resource[:type])
         config[:single] = resource[:single].to_s if resource[:single]
+      end
+      if resource[:multivalued]
+        config[:multivalued] = resource[:multivalued].to_s
       end
       data[:config] = config unless config.empty?
 
