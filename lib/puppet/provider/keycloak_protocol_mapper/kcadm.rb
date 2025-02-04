@@ -137,7 +137,7 @@ Puppet::Type.type(:keycloak_protocol_mapper).provide(:kcadm, parent: Puppet::Pro
       data[:config][:single] = resource[:single].to_s if resource[:single]
     end
     if resource[:aggregate_attrs]
-      data[:config][:aggregate.attrs] = resource[:aggregate_attrs].to_s
+      data[:config][:'aggregate.attrs'] = resource[:aggregate_attrs].to_s
     end
 
     t = Tempfile.new('keycloak_protocol_mapper')
@@ -224,7 +224,7 @@ Puppet::Type.type(:keycloak_protocol_mapper).provide(:kcadm, parent: Puppet::Pro
         config[:single] = resource[:single].to_s if resource[:single]
       end
       if resource[:aggregate_attrs]
-        config[:aggregate.attrs] = resource[:aggregate_attrs].to_s
+        config[:'aggregate.attrs'] = resource[:aggregate_attrs].to_s
       end
       data[:config] = config unless config.empty?
 
