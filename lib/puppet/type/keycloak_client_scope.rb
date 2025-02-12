@@ -57,7 +57,6 @@ Manage Keycloak client scopes
   newproperty(:include_in_token_scope, boolean: true) do
     desc 'include.in.token.scope'
     newvalues(:true, :false)
-    defaultto :true
   end
 
   def self.title_patterns
