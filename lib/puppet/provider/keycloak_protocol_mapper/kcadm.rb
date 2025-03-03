@@ -197,7 +197,7 @@ Puppet::Type.type(:keycloak_protocol_mapper).provide(:kcadm, parent: Puppet::Pro
       config = {}
       if resource[:type] == "custom"
         data[:protocolMapper] = resource[:custom_type]
-        data[:config] = resource[:custom_config]
+        config = resource[:custom_config]
       end
       if ['oidc-usermodel-property-mapper', 'saml-user-property-mapper', 'saml-user-attribute-mapper', 'oidc-usermodel-attribute-mapper'].include?(resource[:type])
         config[:'user.attribute'] = resource[:user_attribute] if resource[:user_attribute]
