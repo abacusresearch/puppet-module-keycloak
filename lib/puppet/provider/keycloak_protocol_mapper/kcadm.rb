@@ -107,7 +107,7 @@ Puppet::Type.type(:keycloak_protocol_mapper).provide(:kcadm, parent: Puppet::Pro
     data[:protocol] = resource[:protocol]
     data[:protocolMapper] = resource[:type]
     data[:config] = {}
-    if resource[:type] == "custom"
+    if resource[:type] == 'custom'
       data[:protocolMapper] = resource[:custom_type]
       data[:config] = resource[:custom_config]
     end
@@ -195,7 +195,7 @@ Puppet::Type.type(:keycloak_protocol_mapper).provide(:kcadm, parent: Puppet::Pro
       data[:protocol] = resource[:protocol]
       data[:protocolMapper] = resource[:type]
       config = {}
-      if resource[:type] == "custom"
+      if resource[:type] == 'custom'
         data[:protocolMapper] = resource[:custom_type]
         config = resource[:custom_config]
       end
